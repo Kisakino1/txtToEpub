@@ -17,9 +17,9 @@ def detect_file_encoding(file_path):
 
 
 # 要检测的文件路径
-#file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\《天可汗》⊙校对版全本+隐藏6章+msmw一修.txt"
-file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\(NEW)《天可汗》⊙校对版全本+隐藏6章+msmw一修.txt"
-
+# file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\天可汗.txt"
+# file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\(NEW)天可汗.txt"
+file_path = r"D:\RelaxTools\books\soushu2025.com@斗破苍穹魔改加料版[搜书吧].txt"
 
 # 检测文件编码
 try:
