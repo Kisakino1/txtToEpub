@@ -5,12 +5,12 @@ from ebooklib import epub
 book = epub.EpubBook()
 
 # 设置书籍元数据
-book.set_title('斗破苍穹魔改加料版')
-book.add_author('天蚕土豆/WTFSOB/彼尔德/zxf/无法无天')
+book.set_title('原来，她们才是主角')
+book.add_author('ccc')
 book.set_language('zh')
 
 # 读取书籍内容
-txtFile = r"D:\RelaxTools\books\soushu2025.com@斗破苍穹魔改加料版[搜书吧].txt"
+txtFile = r"/Users/cai/Desktop/soushu2025.com@《原来，她们才是主角》全本 番外加料版[搜书吧]_utf-8.txt"
 with open(txtFile, 'r', encoding='utf-8') as file:
     content = file.read()
 
@@ -129,4 +129,4 @@ nav_css = epub.EpubItem(uid="style_nav", file_name="style/nav.css", media_type="
 book.add_item(nav_css)
 
 # 写入 EPUB 文件
-epub.write_epub('斗破苍穹魔改加料版.epub', book)
+epub.write_epub('原来，她们才是主角.epub', book)

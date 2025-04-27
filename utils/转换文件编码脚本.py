@@ -68,7 +68,7 @@ def generate_output_filename(input_file, target_encoding='utf-8'):
     return str(output_file)
 
 
-input_file = r"D:\RelaxTools\books\soushu2025.com@火星引力《网游之修罗传说》未删减[搜书吧].txt"
+input_file = r"/Users/cai/Desktop/soushu2025.com@《原来，她们才是主角》全本 番外加料版[搜书吧].txt"
 output_file = generate_output_filename(input_file)
 convert_file_encoding(input_file, output_file)
 
