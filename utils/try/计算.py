@@ -1,7 +1,21 @@
+NUMBER_OF_ELEMENTS=int(input("Enter the number of integers:"))
 
-num1 = 199 + 1
-num2 = 200 - 1
+s=input("Enter the integers between 1 and 100:")
 
-num = num1**num2
+items=s.split()
 
-print(num)
+table=[eval(x) for x in items]
+
+for i in range(0,NUMBER_OF_ELEMENTS):
+
+    a=table[i]
+
+    count=0
+
+    for j in range(0,NUMBER_OF_ELEMENTS):
+
+        if table[j]==a:
+
+            count+=1
+
+    print(a," occurs ",count," times")

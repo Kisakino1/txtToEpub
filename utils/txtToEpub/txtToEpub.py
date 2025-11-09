@@ -5,22 +5,33 @@ from ebooklib import epub
 book = epub.EpubBook()
 
 # 设置书籍元数据
-book.set_title('原来，她们才是主角')
-book.add_author('ccc')
+book.set_title('我的老婆是公主')
+book.add_author('夏花')
 book.set_language('zh')
 
 # 读取书籍内容
-txtFile = r"/Users/cai/Desktop/soushu2025.com@《原来，她们才是主角》全本 番外加料版[搜书吧]_utf-8.txt"
+txtFile = r"/Users/cai/Documents/book/《我的老婆是公主》精校全本_utf-8.txt"
 with open(txtFile, 'r', encoding='utf-8') as file:
     content = file.read()
 
 # 使用正则表达式匹配卷标题和章节标题
-volume_pattern = r'(第[\d一二三四五六七八九十百千万零]+卷\s+[^。\n]*)'  # 匹配 "第1卷"
-chapter_pattern = r'(第[\d一二三四五六七八九十百千万零]+章[：、\s]*[^。\n]*)'  # 匹配 "第1章 章节标题"
+# volume_pattern = r'(第[\d一二三四五六七八九十百千万零]+卷\s+[^。\n]*)'  # 匹配 "第1卷"
+volume_pattern = r'★☆【卷[一二三四五六七八九十百千万零]+.*?】 ☆★'  # 匹配 "★☆【卷三 江宁风月】☆★"
+chapter_pattern = r'(?m)^(第[\d一二三四五六七八九十百千万零]+[章节][：:、\s]*[^\n]*)'  # 行首匹配“章/节”，标题到行尾
 
 # 尝试匹配卷标题，如果匹配不到则直接按章节划分
 volumes = re.split(volume_pattern, content)
 book_toc = []
+
+# 规范化章节标题（为空或过长时给出安全标题）
+def normalize_chapter_title(raw_title: str, index_one_based: int) -> str:
+    title = (raw_title or '').strip()
+    if not title:
+        return f'第{index_one_based}章'
+    # 标题过长可能是误判为正文，限制长度
+    if len(title) > 50:
+        return f'第{index_one_based}章'
+    return title
 
 # 处理引子内容
 prologue_content = ""
@@ -69,7 +80,7 @@ if len(volumes) > 1:
             if chapters[i] is None or chapters[i].strip() == "":
                 continue
 
-            chapter_title = chapters[i].strip()
+            chapter_title = normalize_chapter_title(chapters[i], i // 2 + 1)
             chapter_content = chapters[i + 1].strip() if i + 1 < len(chapters) and chapters[i + 1] is not None else ""
 
             # 打印章名
@@ -93,7 +104,7 @@ else:
         if chapters[i] is None or chapters[i].strip() == "":
             continue
 
-        chapter_title = chapters[i].strip()
+        chapter_title = normalize_chapter_title(chapters[i], i // 2 + 1)
         chapter_content = chapters[i + 1].strip() if i + 1 < len(chapters) and chapters[i + 1] is not None else ""
 
         # 打印章名
@@ -129,4 +140,4 @@ nav_css = epub.EpubItem(uid="style_nav", file_name="style/nav.css", media_type="
 book.add_item(nav_css)
 
 # 写入 EPUB 文件
-epub.write_epub('原来，她们才是主角.epub', book)
+epub.write_epub('我的老婆是公主.epub', book)
