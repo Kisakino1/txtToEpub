@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.eggs/
+
+# 打包产物（不提交到仓库）
+utils/mac_package/build/
+utils/mac_package/dist/
+utils/mac_package/.venv/
+utils/mac_package/*.spec
+utils/win_package/build/
+utils/win_package/dist/
+utils/win_package/*.spec
+
+# 生成的 epub 文件（按需可删掉此条以提交 epub）
+utils/txtToEpub/*.epub
+
+# 本地/临时文件
+.idea/misc.xml
+utils/try/recovered*.jpg

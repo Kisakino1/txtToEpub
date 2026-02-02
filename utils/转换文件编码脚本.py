@@ -68,7 +68,6 @@ def generate_output_filename(input_file, target_encoding='utf-8'):
     return str(output_file)
 
 
-input_file = r"/Users/cai/Documents/book/《我的老婆是公主》精校全本.txt"
+input_file = r"/Users/cai/Documents/book/soushu2025.com@晋末长剑[搜书吧].txt"
 output_file = generate_output_filename(input_file)
 convert_file_encoding(input_file, output_file)
-

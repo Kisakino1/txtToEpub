@@ -5,19 +5,20 @@ from ebooklib import epub
 book = epub.EpubBook()
 
 # 设置书籍元数据
-book.set_title('我的老婆是公主')
-book.add_author('夏花')
+book_title = '仙子破道曲（1-143）'  # 书名，用于设置元数据和生成文件名
+book.set_title(book_title)
+book.add_author('漆黑烈焰使[搜书吧]')
 book.set_language('zh')
 
 # 读取书籍内容
-txtFile = r"/Users/cai/Documents/book/《我的老婆是公主》精校全本_utf-8.txt"
+txtFile = r"/Users/cai/Documents/book/soushu2025.com@【仙子破道曲】（1-143）作者精修未完结 已排版  作者：漆黑烈焰使[搜书吧].txt"
 with open(txtFile, 'r', encoding='utf-8') as file:
     content = file.read()
 
 # 使用正则表达式匹配卷标题和章节标题
-# volume_pattern = r'(第[\d一二三四五六七八九十百千万零]+卷\s+[^。\n]*)'  # 匹配 "第1卷"
-volume_pattern = r'★☆【卷[一二三四五六七八九十百千万零]+.*?】 ☆★'  # 匹配 "★☆【卷三 江宁风月】☆★"
-chapter_pattern = r'(?m)^(第[\d一二三四五六七八九十百千万零]+[章节][：:、\s]*[^\n]*)'  # 行首匹配“章/节”，标题到行尾
+volume_pattern = r'(第[\d一二三四五六七八九十百千万零]+卷\s+[^。\n]*)'  # 匹配 "第1卷"
+# volume_pattern = r'★☆【卷[一二三四五六七八九十百千万零]+.*?】 ☆★'  # 匹配 "★☆【卷三 江宁风月】☆★"
+chapter_pattern = r'(?m)^\s*(第[\d一二三四五六七八九十百千万零]+[章节][：:、\s]*[^\n]*)'  # 行首匹配"章/节"（允许前导空格），标题到行尾
 
 # 尝试匹配卷标题，如果匹配不到则直接按章节划分
 volumes = re.split(volume_pattern, content)
@@ -140,4 +141,4 @@ nav_css = epub.EpubItem(uid="style_nav", file_name="style/nav.css", media_type="
 book.add_item(nav_css)
 
 # 写入 EPUB 文件
-epub.write_epub('我的老婆是公主.epub', book)
+epub.write_epub(f'{book_title}.epub', book)

@@ -1,0 +1,43 @@
+========================================
+  Mac 打包与使用说明
+========================================
+
+说明：界面由 win_gui.py 打包（会调用 检查文件编码_gui、转换文件编码_gui、txtToEpub_gui）；
+      Mac 上用的原脚本（utils/ 下的那 3 个）未做任何修改。
+
+一、如何打出 .app（本机需已装 Python）
+
+  1. 需要先装 Python、pip，以及 tkinter（Homebrew 默认不带）：
+       brew install python-tk@3.13   # 版本号 3.13 按你本机 python3 --version 改
+
+  2. 若 pip 安装依赖时报 SSL certificate verify failed：
+     本脚本已用 --trusted-host 绕过；若仍失败可先执行：
+       /Applications/Python\ 3.x/Install\ Certificates.command
+     （3.x 换成你的版本，或用 brew 安装的 Python 则通常无此问题。）
+
+  3. 在终端进入本目录，执行：
+       ./build_mac.sh
+
+  4. 完成后在 mac_package/dist 里得到「书工具.app」，双击即可运行。
+
+  若双击 .app 没反应：先到 dist 目录，在终端执行
+    ./书工具.app/Contents/MacOS/书工具
+  可看到报错信息；若已崩溃过一次，桌面上会有「书工具_启动错误.txt」记录错误内容。
+
+
+二、使用方式
+
+  双击「书工具.app」会打开一个窗口，有三个标签页：
+
+  【检查文件编码】
+    选一个 txt 文件（可点「浏览…」选择），点「运行检测」，下方会显示该文件的编码和置信度。
+
+  【转换文件编码】
+    选要转换的 txt 文件，目标编码默认 utf-8（可改），点「运行转换」。
+    转换后的文件会保存在原文件同目录，文件名为「原文件名_utf-8.txt」等形式。
+
+  【txt 转 epub】
+    填书名、作者，选一个 txt 小说文件，点「生成 epub」。
+    生成的 epub 会保存在该 txt 所在目录，文件名为「书名.epub」。
+
+  所有操作都在界面里完成，无需再编辑任何配置文件。

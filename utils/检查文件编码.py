@@ -19,7 +19,7 @@ def detect_file_encoding(file_path):
 # 要检测的文件路径
 # file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\天可汗.txt"
 # file_path = "D:\Documents\WeChat Files\wxid_q8r1q7xxjv8h22\FileStorage\File\\2024-09\(NEW)天可汗.txt"
-file_path = r"/Users/cai/Documents/book/《我的老婆是公主》精校全本.txt"
+file_path = r"/Users/cai/Documents/book/soushu2025.com@【仙子破道曲】（1-143）作者精修未完结 已排版  作者：漆黑烈焰使[搜书吧].txt"
 
 # 检测文件编码
 try:
